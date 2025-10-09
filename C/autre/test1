@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+// Fonction qui additionne deux nombres
+int addition(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    printf("=== Programme de test en C ===\n");
+
+    int x = 5;
+    int y = 7;
+
+    int resultat = addition(x, y);
+
+    printf("La somme de %d et %d est : %d\n", x, y, resultat);
+
+    return 0;
+}
