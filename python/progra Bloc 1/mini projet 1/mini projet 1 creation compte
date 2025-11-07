@@ -1,0 +1,48 @@
+#Specification of the function
+"""
+"""
+
+from gaming_tools import *
+
+def new_account(username: str):
+    """Tells the username of the player
+
+    Parameters
+    ----------
+    username : player name (str)
+
+    Returns
+    -------
+    result : username of a player (str)
+
+    Raises
+    ------
+    ValueError : if username already exists
+    
+    Notes
+    -----
+    Verifies if the username already exists, if not, it adds the new username to the player and gives him 225 credits. 
+    If yes, the username already exists and the player needs to change it.
+
+
+    """
+#Verification of the player username existence and setting up new username
+    if not player_exists(username):
+        add_new_player(username)
+
+    else: 
+      raise ValueError("Username already exists. Please choose another username")
+#Introduction text
+    print("Hello %s,/n welcome to Monsters, the Pokemon-inspired game that's going to blow your mind!"
+           "/n First of all, let's introduce you to this world rules:"
+           "/n 1. You can have one monster at a time" 
+           "/n 2. Once his health drops to 0 it dies" 
+           "/n 3. You can buy, capture and sell monsters" 
+           "/n 4. The currency in this world are credits. As a new player, the game gives you 225 credits to start with" 
+           "/n 5. You can fight other players to win credits" 
+           "/n That's all for the rules, we hope that you will enjoy Monsters!" %(username))
+    
+#Sets the player money
+    set_player_money(username, 225)
+    player_credits = get_player_money(username)
+    print("%s now has %d credits." %(username,player_credits))

@@ -1,0 +1,36 @@
+# purchase creature
+from gaming_tools import *
+def purchase( price:int ) :
+    """ used to give a price to a creature and depending on the chosen price we get a random strenght and life
+
+    parameters
+    ----------
+    price : the chosen price to buy a creature(int)
+
+    result
+    ------
+    purchase successful
+    """
+    if not player_exists(player:str) :
+       print( player do not exist )
+        
+    if has_creature(player : str) :
+       print (player can not buy another creature )
+
+    get_player_money(player:str, money: int) :
+    if money>0 and money >= price :
+       print ( can buy a creature )
+        get_creature_strenght == randint(1,price)
+        get_creature_life(creature:str)== randint(1,price)
+        print(randint(1,price))
+    else :
+        print (can not buy a creature )
+
+    get_random_creature_name() -> str 
+    get_random_creature_variety() -> str
+
+    set_creature_(player: str, creature: str, variety: str, strenght: int, life: int) :
+    if player_exists(player:str) and has_creature(player : str) and get_creature_variety(creature:str) and get_creature_strenght(creature : str) and get_creature_life(creature:str)
+        print(success)
+    else :
+      print(fail)

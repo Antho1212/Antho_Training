@@ -1,0 +1,7 @@
+music
+ extension=mp3
+
+reports/INFOB131
+ extension=doc,docx,pdf
+ name_contains=INFO131
+ max_size=1000000

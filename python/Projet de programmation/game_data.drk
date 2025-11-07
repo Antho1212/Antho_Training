@@ -1,0 +1,23 @@
+map:
+20 20 
+altars:
+1 2 10
+2 19 10
+apprentices:
+1 Lea 1 10 50 2
+1 Alya 3 10 50 2
+1 Carl 2 9 50 2
+1 Achile 2 11 50 2
+2 Julia 18 10 50 2
+2 Charles 21 10 50 2
+2 Amir 19 9 50 2
+2 Jade 19 11 50 2
+eggs:
+Smorn 4 4 1 10 4 2 10
+Eorth 4 5 3 100 10 3 10
+Parim 5 4 3 100 10 3 10
+Romor 5 5 7 300 50 4 10
+Kraar 16 16 1 10 4 2 10
+Siber 16 17 3 100 10 3 10
+Wallr 17 16 3 100 10 3 10
+Momie 17 17 7 700 50 4 10

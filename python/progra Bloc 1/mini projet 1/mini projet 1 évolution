@@ -1,0 +1,34 @@
+from gaming_tools import*
+from random import*
+
+def evolution(creature:str):
+    """develop strenght and life of creature and mofifies money
+    Parameters
+    ----------
+    creature: name of creature(str)
+    Result
+    ------
+    life and strenght are developed
+
+    Notes
+    -----
+
+    """
+    username = get_player(creature)
+    money = get_player_money(username)
+
+    if money >= 10 :
+
+        strength = get_creature_strength(creature)
+        if randint(1,4) == 4 :
+            strenght= strenght + 4
+            set_creature_strength(creature, strength)
+        
+        life= get_creature_life(creature)
+        
+        if randint(1,2)== 2 :
+             life = life + 2
+             set_creature_life(creature,life)
+
+    set_player_money( username,money)
+    money=money-10        

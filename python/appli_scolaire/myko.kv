@@ -1,0 +1,24 @@
+BoxLayout:
+    orientation: 'vertical'
+
+    Label:
+        text: 'Bienvenue dans MYKO'
+        opacity: 0  # Commence transparent
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1  # Couleur de texte blanche
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # Animer l'apparition du texte au démarrage
+        on_size: 
+            from kivy.animation import Animation
+            anim = Animation(opacity=1, duration=2)
+            anim.start(self)
+
+    Button:
+        text: 'Quitter'
+        on_press: app.stop()
+
+

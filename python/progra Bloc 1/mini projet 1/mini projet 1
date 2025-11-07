@@ -1,0 +1,230 @@
+from gaming_tools import *
+from random import *
+
+def new_account(username: str):
+    """Tells the username of the player
+
+    Parameters
+    ----------
+    username : player name (str)
+
+    Returns
+    -------
+    result : username of a player (str)
+
+    Raises
+    ------
+    ValueError : if username already exists
+    
+    Notes
+    -----
+    Verifies if the username already exists, if not, it adds the new username to the player and gives him 225 credits. 
+    If yes, the username already exists and the player needs to change it.
+
+
+    """
+#Verification of the player username existence and setting up new username
+    if not player_exists(username):
+        add_new_player(username)
+
+    else: 
+      raise ValueError("Username already exists. Please choose another username")
+#Introduction text
+    print("Hello %s,/n welcome to Monsters, the Pokemon-inspired game that's going to blow your mind!"
+           "/n First of all, let's introduce you to this world rules:"
+           "/n 1. You can have one monster at a time" 
+           "/n 2. Once his health drops to 0 it dies" 
+           "/n 3. You can buy, capture and sell monsters" 
+           "/n 4. The currency in this world are credits. As a new player, the game gives you 225 credits to start with" 
+           "/n 5. You can fight other players to win credits" 
+           "/n That's all for the rules, we hope that you will enjoy Monsters!" %(username))
+    
+#Sets the player money
+    set_player_money(username, 225)
+    player_credits = get_player_money(username)
+    print("%s now has %d credits." %(username,player_credits))
+
+
+
+def capture(player:str):
+    """atempt to capture a monster using credits 
+    
+    Parameters 
+    ----------
+    
+    credits : the available number of credits used to capture a monster. 
+
+    returns 
+    ---------
+
+    A message saying if the player captured a monster or not. (str)
+    """
+    get_player_money()
+    if credits >= 50 :
+       credits -= 50 
+       chance =  randint(1,4)
+       if chance == 1:
+           get_random_creature_name()
+           get_random_creature_variety()
+           get_creature_strength()
+           get_creature_life()
+           set_creature()
+       else:
+           return "capture fail"    
+    else:
+        return "you don't have enought credit, you need 50 credits"
+    
+def purchase( price:int,player:str ) :
+    """ used to give a price to a creature and depending on the chosen price we get a random strenght and life
+
+    parameters
+    ----------
+    price : the chosen price to buy a creature(int)
+
+    result
+    ------
+    purchase successful
+    """
+    if not player_exists(player):
+       print("player do not exist" )
+        
+    if has_creature(player):
+       print("player can not buy another creature")
+
+    get_player_money(player)
+    if credits>0 and credits >= price :
+        set_creature_strength() == randint(1,price)
+        set_creature_life()== randint(1,price)
+        print(randint(1,price))
+    else :
+        print("can not buy a creature")
+
+    get_random_creature_name(player)
+    get_random_creature_variety(player)
+
+    set_creature(player,player.life, player.variety, player.strenght,)
+    if player_exists(player) and has_creature(player) and get_creature_variety(player) and get_creature_strength(player) and get_creature_life(player):
+        print("success")
+    else :
+      print("fail")
+
+
+def evolution(creature:str):
+    """develop strenght and life of creature and mofifies money
+    Parameters
+    ----------
+    creature: name of creature(str)
+    Result
+    ------
+    life and strenght are developed
+
+    Notes
+    -----
+
+    """
+    username = get_player(creature)
+    money = get_player_money(username)
+
+    if money >= 10 :
+
+        strength = get_creature_strength(creature)
+        if randint(1,4) == 4 :
+            strenght= strenght + 4
+            set_creature_strength(creature, strength)
+        
+        life= get_creature_life(creature)
+        
+        if randint(1,2)== 2 :
+             life = life + 2
+             set_creature_life(creature,life)
+
+    set_player_money( username,money)
+    money=money-10        
+
+
+def sell_creature (player):
+    """ the function is used to sell a creature and get the credits
+    parameters
+    ---------------
+    creature_strength : The strength of the creature (int)
+
+    creature_life : The life of the creature (int)
+
+    player_credits: current credits of the creature (int)
+
+    player_has_creature: The existence of the creature (bool)
+
+    price_creature_sold: The price of the creature (float)
+   
+    return
+    --------------
+   sell creature and get credits
+    ----------
+    """
+    get_player_money(player)
+    get_creature_life(player)
+    get_creature_strength(player)
+    if player_exists == True and has_creature == True:
+    #Calculate the price
+        price_creature_sold = (player.strength + player.life)/2
+    #add the amount to players credits
+        player_credits += price_creature_sold
+        print ("the creature is sold for {price_creature_sold} credits and the player currently owns {player_credits} credits")
+    else :
+        print ('the player does not own creature')
+    
+
+def combat(creature_1:str,creature_2:str):
+    """the function is use for make a fight with another player,
+    the two player's creature fight and lose some life,
+    the life the creature lose depend on the strenght of the opponent,
+    if a creature doesn't have life after he will died,
+    the variety of the creature also have matters 
+    fire is better than plant, plant better than water and water better than fire
+    if the player have type advantage is strenght is double,
+    is the player have type disadventage is credits win is double
+    the player win 50 credit if he win, 10 credits if he draw and 0 credits if he lose.
+
+    parameters
+    ----------
+    player_1 : the name of the first player
+    player_2 : the name of the second player
+    
+    returns
+    -------
+    credits:the number of credits win
+    new_life:the new amounts of life
+    """
+
+    if creature_exists(creature_1) == False:
+        return("the creature 1 don't exists")
+    if creature_exists(creature_2) == False:
+        return("the creature 2 don't exists")
+    
+
+
+    username_1 = get_player(creature_1)
+    username_2 = get_player(creature_2)
+
+    creature_1_life = get_creature_life(creature_1)
+    creature_2_life = get_creature_life(creature_2)
+    creature_1_strength = get_creature_strength(creature_1)
+    creature_2_strength = get_creature_strength(creature_2)    
+    new_life_creature1 =  creature_1_life - creature_2_strength  
+    new_life_creature2 =  creature_2_life - creature_1_strength          
+
+
+    set_creature_life(creature_1,new_life_creature1)
+    set_creature_life(creature_2,new_life_creature2)
+    
+    if new_life_creature1 > new_life_creature2:
+        credits += 50
+        set_player_money(username_1,get_player_money(username_1)+credits)
+    elif new_life_creature1 < new_life_creature2:
+        credits += 50
+        set_player_money(username_2,get_player_money(username_2)+credits)
+    elif new_life_creature1 == new_life_creature2:    
+        credits += 10
+        set_player_money(username_1,get_player_money(username_1)+credits)
+        set_player_money(username_2,get_player_money(username_2)+credits)
+
