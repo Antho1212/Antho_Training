@@ -6,24 +6,23 @@ public class EvalOne {
         while(!traverser()){
             compteur++;
         }
-        System.out.println(compteur + " tentative(s) a(ont) été nécessaire(s) pour traverser !");
+        System.out.println(compteur + " tentative(s) a(ont) ete necessaire(s) pour traverser !");
     }
 
     /**
-     * Démine un terrain de mines
-     * pertmet de détecter les mines explosives et incendiaires si elles sont trouvées.
+     * @effect Démine un terrain de mines
      * @throws UndetectedMineException si une mine non détectée explose
      */
     public static void deminer() throws UndetectedMineException{
         try {
         creuser();
-        System.out.println("aucune mine détectée");
+        System.out.println("aucune mine detectee");
     } 
     catch (ExplosiveMineException e) {
-        System.out.println("Mine explosive détectée");
+        System.out.println("Mine explosive detectee");
     } 
     catch (IncendiaryMineException e) {
-        System.out.println("Mine incendiaire détectée");
+        System.out.println("Mine incendiaire detectee");
     }
     }
 
@@ -37,18 +36,18 @@ public class EvalOne {
         int value = (int) (Math.random() * 10);
         //génère un nombre aléatoire entre 1 et 10
         if(value <= 2){
-            throw new ExplosiveMineException("mine explisve détecter");
+            throw new ExplosiveMineException("mine explosive detecter");
         }
         else if(value <= 4){
-            throw new IncendiaryMineException("mine incendiaire détecter");
+            throw new IncendiaryMineException("mine incendiaire detecter");
         }
         else if(value <= 6){
-            throw new UndetectedMineException("mine non détecter");
+            throw new UndetectedMineException("mine non detecter");
         }
     }
 
     /**
-     * Tente de traverser le champ de mines.
+     * @effect Tente de traverser le champ de mines.
      * @return true si les 10 pas sont franchis, false si une mine undétecter explose.
      */
     public static boolean traverser() {
